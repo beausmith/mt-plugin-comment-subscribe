@@ -90,6 +90,7 @@ sub process_new_comment {
             # Here we build the email from a template rather than raw text. More powerful, easier to edit, L10N 
             my $base = $app->config('CGIPath');
             $base .= '/' unless $base =~ m!/$!;
+            $base = $blog->site_url . $base unless $base =~ m{^https?://}x;
             my $param = {
                 entry_title => $entry->title,
                 # Using entry_permalink so that it generates the "preferred" link
